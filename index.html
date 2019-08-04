@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Sumatera, Series 4184, Great Britain War Office (March 1945)</title>
+    <style>
+      html, body, #map{
+        height: 100%;
+        margin: 0px;
+        padding: 0px
+      }
+			.leaflet-control-attribution { display:none!important}
+    </style>
+	
+<link rel="stylesheet" href="https://sifsuska.github.io/tile-download-and-montage-generator/leaflet.css" />
+<script src="https://sifsuska.github.io/tile-download-and-montage-generator/leaflet.js"></script>
+<script src="https://sifsuska.github.io/tile-download-and-montage-generator/slippyMapTile.js"></script>
+<script src="https://sifsuska.github.io/tile-download-and-montage-generator/proj4.js"></script>
+<script src="https://sifsuska.github.io/tile-download-and-montage-generator/jquery-2.1.4.min.js"></script>
+<script src="https://sifsuska.github.io/tile-download-and-montage-generator/jszip.min.js"></script>
+<script src="https://sifsuska.github.io/tile-download-and-montage-generator/FileSaver.min.js"></script>
+</head>
+<body>
+	<div id="map"></div>
+	<script>
+
+		var bukittinggi_latlong={lng:100.36747,lat:-0.30459};
+		
+		
+		var map = L.map('map').setView({ lat: 0.32036546158961193, lng: 101.06760631448934 }, 9);
+		
+
+		
+		
+
+    
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+
+		//Localcopy of ESRI World Imagery
+		var local_worldimagery =  L.tileLayer(
+			'{z}-{x}-{y}.jpg',
+			{
+				maxZoom:15
+				,minZoom:15
+				,bounds: L.latLngBounds(L.latLng(-0.21972602392080667,100.283203125), L.latLng(-0.395504671531996,100.5029296875))
+			}
+		);
+		
+		var tileLayer_ESRI_World_Imagery = L.tileLayer('http://server.arcgisonline.com/ArcGIS/' 
+           + 'rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}'
+					 ,{ attribution: 'ESRI', maxZoom:17
+					 });		
+		//Localcopy of gsgs4184.00 (index)
+		var gsgs4184_00 =  L.tileLayer(
+			'http://suskatilesvr.000webhostapp.com/gsgs4184.00/{z}-{y}-{x}.png',
+			{minZoom:0,maxZoom:6}
+		).addTo(map);		
+    
+//dari EXTENT raster diconvert ke rectangle    
+var gsgs4184_00_EXTENT = "EXTENT 84.6142204645726 -13.817064500855 120.791187952617 10.1137222671656".split(" ");
+var gsgs4184_00_latLngBounds = L.latLngBounds(
+  L.latLng(gsgs4184_00_EXTENT[2],gsgs4184_00_EXTENT[1])
+  ,L.latLng(gsgs4184_00_EXTENT[4],gsgs4184_00_EXTENT[3])
+);
+var gsgs4184_00_rectangle = L.rectangle(gsgs4184_00_latLngBounds);//.addTo(map);
+map.fitBounds(gsgs4184_00_rectangle.getBounds());
+
+		
+//Koetaradja, sekarang Banda Aceh
+		var gsgs4184_01 =  L.tileLayer(
+			'http://suskatilesvr.000webhostapp.com/gsgs4184.01/{z}-{y}-{x}.png',
+			{minZoom:7,maxZoom:11}
+		).addTo(map);//auto add saja				
+
+//Medan, Meulaboh, Tapaktoean,Nieuw Singkil, Baroes, Sibolga
+		var gsgs4184_02 =  L.tileLayer(
+			'http://suskatilesvr.000webhostapp.com/gsgs4184.02/{z}-{y}-{x}.png',
+			{minZoom:7,maxZoom:11}
+		);//.addTo(map);//auto add saja				
+    //ternyata berat kalau di add semua
+    
+		var gsgs4184_03 =  L.tileLayer(
+			'http://suskatilesvr.000webhostapp.com/gsgs4184.03/{z}-{y}-{x}.png',
+			{minZoom:7,maxZoom:11}
+		);//.addTo(map);			
+    
+
+		var gsgs4184_04 =  L.tileLayer(
+			'http://suskatilesvr.000webhostapp.com/gsgs4184.04/{z}-{y}-{x}.png',
+			{minZoom:7,maxZoom:11}
+		);//.addTo(map);			
+    
+
+		var gsgs4184_05 =  L.tileLayer(
+			'http://suskatilesvr.000webhostapp.com/gsgs4184.05/{z}-{y}-{x}.png',
+			{minZoom:7,maxZoom:11}
+		);//.addTo(map);				
+    
+
+		var gsgs4184_06 =  L.tileLayer(
+			'http://suskatilesvr.000webhostapp.com/gsgs4184.06/{z}-{y}-{x}.png',
+			{minZoom:7,maxZoom:11}
+		);//.addTo(map);				
+    
+
+		var gsgs4184_07 =  L.tileLayer(
+			'http://suskatilesvr.000webhostapp.com/gsgs4184.07/{z}-{y}-{x}.png',
+			{minZoom:7,maxZoom:11}
+		);//.addTo(map);				
+    
+
+
+		var gsgs4184_08 =  L.tileLayer(
+			'http://suskatilesvr.000webhostapp.com/gsgs4184.08/{z}-{y}-{x}.png',
+			{minZoom:7,maxZoom:11}
+		);//.addTo(map);				
+    
+
+
+		var gsgs4184_09 =  L.tileLayer(
+			'http://suskatilesvr.000webhostapp.com/gsgs4184.09/{z}-{y}-{x}.png',
+			{minZoom:7,maxZoom:11}
+		);//.addTo(map);				
+    
+
+
+		var gsgs4184_10 =  L.tileLayer(
+			'http://suskatilesvr.000webhostapp.com/gsgs4184.10/{z}-{y}-{x}.png',
+			{minZoom:7,maxZoom:11}
+		);//.addTo(map);				
+    
+
+
+
+
+var googleStreets = L.tileLayer('http://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}',{
+    maxZoom: 20,
+    subdomains:['mt0','mt1','mt2','mt3']
+});
+
+var googleHybrid = L.tileLayer('http://{s}.google.com/vt/lyrs=s,h&x={x}&y={y}&z={z}',{
+    maxZoom: 20,
+    subdomains:['mt0','mt1','mt2','mt3']
+});
+
+var googleSat = L.tileLayer('http://{s}.google.com/vt/lyrs=s&x={x}&y={y}&z={z}',{
+    maxZoom: 20,
+    subdomains:['mt0','mt1','mt2','mt3']
+});
+
+var googleTerrain = L.tileLayer('http://{s}.google.com/vt/lyrs=p&x={x}&y={y}&z={z}',{
+    maxZoom: 20,
+    subdomains:['mt0','mt1','mt2','mt3']
+});    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+//http://leafletjs.com/examples/extending/extending-2-layers.html
+L.GridLayer.DebugCoords = L.GridLayer.extend({
+    createTile: function (coords) {
+        var tile = document.createElement('div');
+        tile.innerHTML = [coords.x, coords.y, coords.z].join(', ');
+        tile.style.outline = '1px solid yellow';
+        return tile;
+    }
+});
+
+//now create an instance of our Plugin
+L.gridLayer.debugCoords = function(opts) {
+    return new L.GridLayer.DebugCoords(opts);
+};
+
+
+
+		
+		//DEFAULT
+		//local_worldimagery.addTo(map);
+		tileLayer_ESRI_World_Imagery.addTo(map);
+		
+		var baseMaps = {
+				"ESRI World Imagery (online)":tileLayer_ESRI_World_Imagery
+        ,"Google Satellite":googleSat 
+        ,"Google Street":googleStreets  
+        ,"Google Hybrid":googleHybrid   
+        ,"Google Terrain":googleTerrain   
+		};
+		
+		var checkboxedLayers = {
+      "Sumatera Series 4184 Great Britain War Office<br/>Index":gsgs4184_00
+      ,"01 Koetaradja (Banda Aceh)":gsgs4184_01
+      ,"02 Medan":gsgs4184_02
+      ,"03":gsgs4184_03
+      ,"04":gsgs4184_04
+      ,"05":gsgs4184_05
+      ,"06":gsgs4184_06
+      ,"07":gsgs4184_07
+      ,"08":gsgs4184_08
+      ,"09":gsgs4184_09
+      ,"10":gsgs4184_10
+			//,"debug":L.gridLayer.debugCoords()
+		};
+		
+	
+L.control.layers(baseMaps,checkboxedLayers).addTo(map);		
+
+
+
+
+
+
+
+function xyzToPolygon(x,y,z){
+	var _bb = new BoundingBox(x,y,z);
+	return new L.Polygon([[_bb.north,_bb.west],[_bb.north,_bb.east],[_bb.south,_bb.east],[_bb.south,_bb.west]]);
+}
+
+function xyzToGeoJSON(x,y,z){
+	var g= xyzToPolygon(x,y,z).toGeoJSON()
+	var bb = new BoundingBox(x,y,z);
+	var nw = proj4('EPSG:4326','EPSG:3857',[bb.west,bb.north]);
+	var se = proj4('EPSG:4326','EPSG:3857',[bb.east,bb.south]);
+
+	g.properties={
+		x:x,
+		y:y,
+		z:z,
+		n:bb.north,
+		w:bb.west,
+		s:bb.south,
+		e:bb.east,
+		
+		n3857:nw[0],
+		w3857:nw[1],
+		s3857:se[0],
+		e3857:se[1],
+		
+		//string bbox adalan wsen
+		bbox:bb.bbox,
+		//	this.bbox = this.west +','+this.south +','+this.east +','+ this.north
+		bbox3857:nw[1]+',' + se[0] + ',' + se[1] + ',' + nw[0]
+	};
+	return g;
+}
+/** fungsi untuk konversi dari x y zoom tile menjadi .WLD world file untuk raster*/
+function xyzToWLD(x,y,z){
+	var cols=1;
+	var rows=1;
+	var tempe = new BoundingBox(x,y,z);
+	var nw3857 = proj4('EPSG:4326','EPSG:3857',[tempe.west,tempe.north]);
+	var se3857 = proj4('EPSG:4326','EPSG:3857',[tempe.east,tempe.south]);
+	
+		return Math.abs(se3857[0]-nw3857[0]) / (cols*256) 
+		//baris 2 dan 3 selalu nol karena kita kan tidak ada tarik tarik dan puter
+		+"\n0\n0\n"
+		//baris 4 adalah jarak per pixel untuk  latitude eh koordinat y nya
+		//artinya jarak antara north dan south dibagi jumlah pixel
+		+ '-' +Math.abs(nw3857[1]-se3857[1]) / (rows*256)
+		+"\n"
+		//baris 5 dan 6 adalah koordinat kiri atas
+		+nw3857[0]+"\n"+nw3857[1]
+		+"\n-----\n\n\n\n\n";
+
+}
+
+
+function CMDxyzToWLD(x,y,z){
+	var cols=1;
+	var rows=1;
+	var tempe = new BoundingBox(x,y,z);
+	var nw3857 = proj4('EPSG:4326','EPSG:3857',[tempe.west,tempe.north]);
+	var se3857 = proj4('EPSG:4326','EPSG:3857',[tempe.east,tempe.south]);
+	
+		return 'ECHO '+ Math.abs(se3857[0]-nw3857[0]) / (cols*256) 
+		//baris 2 dan 3 selalu nol karena kita kan tidak ada tarik tarik dan puter
+		+" > "+y+".jgw\nECHO 0 >> "+y+".jgw\nECHO 0 >>"+y+".jgw\nECHO "
+		//baris 4 adalah jarak per pixel untuk  latitude eh koordinat y nya
+		//artinya jarak antara north dan south dibagi jumlah pixel
+		+ '-' +Math.abs(nw3857[1]-se3857[1]) / (rows*256)
+		+" >> "+y+".jgw\nECHO "
+		//baris 5 dan 6 adalah koordinat kiri atas
+		+nw3857[0]+" >> "+y+".jgw\nECHO "+nw3857[1]
+		+" >> "+y+".jgw\n\n\n\n";
+
+}
+
+
+/**
+Download GeoJSON file untuk zoom level tertentu
+@input zoom level, 0 adalah seluruh dunia, 1 adalah seperempatnya... dst
+@require slippyMapTile.js untuk  perhitungan batas bounding box koordinat tile x,y,z nya 
+@require leaflet.js untuk toGeoJSON
+@require FileSaver.js untuuk save as (download) file ke client
+*/
+function downloadZ(z){
+	// Create an empty GeoJSON collection
+	var collection = {
+		"type": "FeatureCollection",
+		"features": []
+	};
+	
+	//sekarang loop tiap x,y untuk z
+	for(x=0;x<(2**z);x++){
+		for(y=0;y<(2**z);y++){
+			g = xyzToGeoJSON(x,y,z);
+			collection.features.push(g);
+		}
+	}
+	
+	saveAs(new Blob([JSON.stringify(collection)], {type: "text/plain;charset=utf-8"}),'z'+z+'.geojson')
+	
+}
+//warning: ukuran bisa sangat besar kalau z sudah > 9
+
+
+/** download GeoJSON hanya dari rentang tertentu*/
+function downloadXYZ(x1,x2,y1,y2,z){
+	// Create an empty GeoJSON collection
+	var collection = {
+		"type": "FeatureCollection",
+		"features": []
+	};
+	
+	//sekarang loop tiap x,y untuk z
+	for(x=x1;x<=x2;x++){
+		for(y=y1;y<=y2;y++){
+			g = xyzToGeoJSON(x,y,z);
+			collection.features.push(g);
+		}
+	}
+	
+	saveAs(new Blob([JSON.stringify(collection)], {type: "text/plain;charset=utf-8"}),'z'+z+'x'+x1+'_'+x2+'y'+y1+'_'+y2+'.geojson')
+	
+}
+
+/** 
+fungsi untuk mendapatkan x dan y untuk zoom z tertentu pada bounds tertentu
+//function lat2tile(lat,zoom)
+//function long2tile(lon,zoom)
+*/
+function boundsToXY(bounds,z){
+	return {
+		x1: long2tile(bounds._southWest.lng, z), //west
+		x2: long2tile(bounds._northEast.lng, z), //east
+		y1: lat2tile(bounds._northEast.lat,z), // north
+		y2: lat2tile(bounds._southWest.lat,z)//south
+	};
+}
+//JSON.stringify(bukittinggi.getBounds())
+//"{"_southWest":{"lat":-0.38923,"lng":100.44781},"_northEast":{"lat":1.02991,"lng":101.6874}}"
+//boundsToXY(bukittinggi.getBounds(),7)
+//Object { x1: 99, x2: 100, y1: 63, y2: 64 }
+//boundsToXY(pku.getBounds(),11)
+//Object { x1: 1600, x2: 1602, y1: 1020, y2: 1021 }
+
+
+
+
+var popup = L.popup();
+
+function onMapClick(e) {
+    popup
+        .setLatLng(e.latlng)
+        .setContent(//"<textarea>"
+			"You clicked the map at <br/>" + e.latlng.toString()+ "<br/>zoom="+map.getZoom()
+			+"<br/></br/>Map Center: " + JSON.stringify(map.getCenter())
+			+"<br/></br/>Map Bounds: " + JSON.stringify(map.getBounds())
+			//+"</textarea>"
+		).openOn(map);
+
+
+}
+
+//map.on('click', onMapClick);
+
+window.onError=function(e){console.log(JSON.stringify(e));return true;}
+// anti injek 000webhost
+//document.getElementsByClassName= function(){return true;}	
+	</script>
+  <style>/*body:last-child{clip-path: polygon(0px 0px,0px 0px,0px 0px,0px 0px);opacity:0}*/
+  body > div:nth-child(4){clip-path: polygon(0px 0px,0px 0px,0px 0px,0px 0px);opacity: 0}/*terpaksa hardcode*/
+  </style>
+</body>
+</html>
